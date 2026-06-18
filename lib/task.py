@@ -17,3 +17,7 @@ class Task:
     @classmethod
     def from_dict(cls, data):
         return cls(data["task_id"], data["description"], data["completed"])
+
+    def __str__(self):
+        status = "x" if self.completed else " "
+        return f"[{status}] {self.task_id}: {self.description}"
