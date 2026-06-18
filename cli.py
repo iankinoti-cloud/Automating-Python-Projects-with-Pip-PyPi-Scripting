@@ -1,5 +1,6 @@
 import argparse
 
+from lib.generate_log import generate_log
 from lib.task_manager import TaskManager
 
 
@@ -26,10 +27,12 @@ def main():
     if args.command == "add-task":
         task = manager.add_task(args.description)
         print(f"Added task {task.task_id}: {task.description}")
+        generate_log([f"Added task {task.task_id}: {task.description}"])
 
     elif args.command == "complete-task":
         task = manager.complete_task(args.task_id)
         print(f"Completed task {task.task_id}: {task.description}")
+        generate_log([f"Completed task {task.task_id}: {task.description}"])
 
     elif args.command == "list-tasks":
         tasks = manager.list_tasks()
