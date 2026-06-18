@@ -28,3 +28,14 @@ class TaskManager:
         self.tasks.append(task)
         self._save()
         return task
+
+    def complete_task(self, task_id):
+        for task in self.tasks:
+            if task.task_id == task_id:
+                task.mark_complete()
+                self._save()
+                return task
+        raise ValueError(f"No task found with id {task_id}")
+
+    def list_tasks(self):
+        return list(self.tasks)
