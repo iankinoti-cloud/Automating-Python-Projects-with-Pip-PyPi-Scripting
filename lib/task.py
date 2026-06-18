@@ -6,3 +6,14 @@ class Task:
 
     def mark_complete(self):
         self.completed = True
+
+    def to_dict(self):
+        return {
+            "task_id": self.task_id,
+            "description": self.description,
+            "completed": self.completed,
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["task_id"], data["description"], data["completed"])
