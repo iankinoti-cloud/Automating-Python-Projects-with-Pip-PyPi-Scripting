@@ -21,3 +21,10 @@ class TaskManager:
     def _save(self):
         with open(self.store_path, "w") as file:
             json.dump([task.to_dict() for task in self.tasks], file, indent=2)
+
+    def add_task(self, description):
+        next_id = max((task.task_id for task in self.tasks), default=0) + 1
+        task = Task(next_id, description)
+        self.tasks.append(task)
+        self._save()
+        return task
