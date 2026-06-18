@@ -5,3 +5,7 @@ def generate_log(data):
         raise ValueError("data must be a list")
 
     filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
+
+    with open(filename, "w") as file:
+        for entry in data:
+            file.write(f"{entry}\n")
